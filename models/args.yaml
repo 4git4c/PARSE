@@ -1,0 +1,205 @@
+DEFAULT: &DEFAULT
+  black_list: [4,5,6]
+  num_gpus_total: 8
+  num_gpus_to_use: 1
+  verbose: 2
+  save_plot: False
+  val_interval: 1
+
+modelN: &modelN
+  model_name: modelN
+  <<: *DEFAULT
+
+modelN-Cora: &modelN-Cora
+  <<: *modelN
+  black_list: [4,5,6]
+  lr: 0.005
+  out_heads: 1
+  task_type: Node_Transductive
+  val_interval: 1
+
+modelN-Cora-classification:
+  <<: *modelN-Cora
+  epochs: 500
+  dim: 128
+  dim_x: 4
+  w_loss1: 10
+  w_loss2: 10
+  w_loss3: 1
+  cfg : [512, 128]
+  margin1: 0.8
+  margin2: 0.2
+  NN: 4
+  num1: 100
+  wd: 0.005
+  weight_decay: 0.00005
+  dropout: 0.3
+
+modelN-CiteSeer: &modelN-CiteSeer
+  <<: *modelN
+  black_list: [4,5,6]
+  lr: 0.005
+  out_heads: 1
+  task_type: Node_Transductive
+  val_interval: 1
+
+modelN-CiteSeer-classification:
+  <<: *modelN-CiteSeer
+  lr: 0.005
+  task_type: Node_Transductive
+  val_interval: 1
+  epochs: 100
+  dim: 128
+  dim_x: 4
+  w_loss1: 5
+  w_loss2: 5
+  w_loss3: 1
+  cfg : [128]
+  margin1: 0.8
+  margin2: 0.4
+  NewATop: 10
+  NN: 5
+  num1: 100
+  wd: 0.05
+  weight_decay: 0.0001
+  dropout: 0.1
+
+modelN-PubMed: &modelN-PubMed
+  <<: *modelN
+  black_list: [4,5,6]
+  lr: 0.01
+  out_heads: 8
+  task_type: Node_Transductive
+  val_interval: 1
+  num_hidden_features: 8
+
+modelN-PubMed-classification:
+  <<: *modelN-PubMed
+  l2_lambda: 0.0005
+  epochs: 1000
+  w_loss1: 20
+  w_loss2: 20
+  w_loss3: 1
+  margin1: 0.5
+  margin2: 0.5
+  NewATop: 5
+  dim: 128
+  dim_x: 4
+  NN: 3
+  cfg : [512, 128]
+  num1: 200
+  wd: 0.01
+  weight_decay: 0.0001
+  dropout: 0.4
+
+modelN-Photo: &modelN-Photo
+  <<: *modelN
+  black_list: [4,5,6]
+  lr: 0.01
+  out_heads: 1
+  task_type: Node_Transductive
+  val_interval: 1
+  num_hidden_features: 8
+  epochs: 500
+  to_undirected_at_neg: True
+
+modelN-Photo-classification:
+  <<: *modelN-Photo
+  epochs: 1000
+  w_loss1: 100
+  w_loss2: 100
+  w_loss3: 1
+  margin1: 0.9
+  margin2: 0.9
+  dim: 128
+  cfg: [512, 128]
+  NewATop: 0
+  dropout: 0.1
+  NN: 1
+  num1: 200
+  wd: 0.0
+  weight_decay: 0.0001
+
+modelN-Computers: &modelN-Computers
+  <<: *modelN
+  black_list: [4,5,6]
+  lr: 0.01
+  out_heads: 1
+  task_type: Node_Transductive
+  val_interval: 1
+  num_hidden_features: 8
+  epochs: 500
+  to_undirected_at_neg: True
+
+modelN-Computers-classification:
+  <<: *modelN-Computers
+  epochs: 1000
+  w_loss1: 100
+  w_loss2: 100
+  w_loss3: 2
+  margin1: 0.4
+  margin2: 0.6
+  dim: 128
+  cfg: [512, 128]
+  NewATop: 0
+  dropout: 0.1
+  NN: 5
+  num1: 300
+  wd: 0.0
+  weight_decay: 0.0001
+
+modelN-arxiv: &modelN-arxiv
+  <<: *modelN
+  black_list: [4,5,6]
+  lr: 0.01
+  out_heads: 1
+  task_type: Node_Transductive
+  val_interval: 1
+  num_hidden_features: 8
+  epochs: 500
+  to_undirected_at_neg: True
+
+modelN-ogbn-arxiv-classification:
+  <<: *modelN-arxiv
+  epochs: 100
+  w_loss1: 10
+  w_loss2: 10
+  w_loss3: 1
+  margin1: 0.9
+  margin2: 0.9
+  dim: 128
+  cfg: [512, 128]
+  dropout: 0.2
+  NN: 1
+  lr2: 5e-1
+  num1: 300
+  wd: 0.0
+  weight_decay: 0.00005
+
+modelN-plcifar10: &modelN-plcifar10
+  <<: *modelN
+  black_list: [4,5,6]
+  lr: 0.01
+  out_heads: 1
+  task_type: Node_Transductive
+  val_interval: 1
+  num_hidden_features: 8
+  epochs: 500
+  to_undirected_at_neg: True
+
+modelN-plcifar10-classification:
+  <<: *modelN-plcifar10
+  epochs: 100
+  w_loss1: 500
+  w_loss2: 500
+  w_loss3: 0
+  margin1: 10
+  margin2: 10
+  dim: 128
+  cfg: [512, 128]
+  NewATop: 0
+  dropout: 0.1
+  NN: 10
+  num1: 200
+  wd: 0
+  weight_decay: 0.0001
