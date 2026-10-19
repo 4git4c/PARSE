@@ -1,5 +1,5 @@
 # Implementation of Breaking the Label-Structure Co-Corruption in Graph Partial Label Learning
-This repository contains the reference code for the paper Simple Unsupervised Graph Representation Learning 
+This repository contains the reference code for the paper Breaking the Label-Structure Co-Corruption in Graph Partial Label Learning
 
 ## Demo for Tunning
 
